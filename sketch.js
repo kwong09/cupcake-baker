@@ -9,8 +9,22 @@ let instructions, instructionsCounter = 0;
 let cupcakeTray, cupcakeBatterCount = 0;
 let bowlAni;
 let ovenOpen = true, ovenTimer = 10, timerStart = false, oven;
+let sparklySound, popSound, dingSound, buttonSound;
+let cupcakeTrayImageList, font;
+let bg1, bg2, bg3;
+let cupcakeBase, cupcakeFrosting, cupcakeWrapper;
 
 function preload() {
+	sparklySound = loadSound('/sfx/sparkleSFX.mov');
+	bg1 = loadImage('/assets/screen1Background.png');
+	bg2 = loadImage('/assets/screen2Background.png');
+	bg3 = loadImage('/assets/screen3Background.png');
+
+	font = loadFont('/assets/gentleRemindFont.ttf');
+
+	popSound = loadSound('/sfx/popSFX.mov');
+	dingSound = loadSound('/sfx/ovenDing.mov');
+	buttonSound = loadSound('/sfx/buttonSFX.mp3');
 	bowlAni = loadAni("/animation/bowlFrame0.PNG", "/animation/bowlFrame1.PNG", "/animation/bowlFrame2.PNG", "/animation/bowlFrame5.PNG", "/animation/bowlFrame7.PNG", "/animation/bowlFrame4.PNG", "/animation/bowlFrame3.PNG", "/animation/bowlFrame6.PNG", "/animation/bowlFrame8.PNG");
 }
 
@@ -18,9 +32,11 @@ function setup() {
 	new Canvas(1000, 500);
 	displayMode('centered');
 	background('white');
+	textFont(font);
+	strokeWeight(0);
 
 	homeScreenStart = new Sprite(500, 250, 100, 50, 's');
-	homeScreenStart.text = 'Start';
+	homeScreenStart.text = 'START';
 	homeScreenStart.color = 'white';
 
 	bowl = new Sprite(-100, -100, 650, 400, 'k');
@@ -30,82 +46,92 @@ function setup() {
 	bowl.ani.offset.y = -70;
 
 	egg = new Sprite(-100, -100);
-	egg.image = '/ingredients/egg0.png';
+	egg.image = '/assets/egg0.png';
 	egg.scale = 0.07;
 	egg.diameter = 45;
 	egg.rotationLock = 'true';
 
 	sugar = new Sprite(-100, -100, 500, 600);
-	sugar.image = '/ingredients/sugarImg.PNG';
+	sugar.image = '/assets/sugarImg.PNG';
 	sugar.scale = 0.15;
 	sugar.image.offset.y = -30;
 	sugar.image.offset.x = 30;
 	sugar.rotationLock = 'true';
 
 	butter = new Sprite(-100, -100, 400, 300);
-	butter.image = '/ingredients/butterImg.PNG';
+	butter.image = '/assets/butterImg.PNG';
 	butter.scale = 0.15;
 	butter.rotationLock = 'true';
 
 	vanilla = new Sprite(-100, -100, 280, 420);
-	vanilla.image = '/ingredients/vanillaImg.PNG';
+	vanilla.image = '/assets/vanillaImg.PNG';
 	vanilla.scale = 0.15;
 	vanilla.rotationLock = 'true';
 
 	flour = new Sprite(-100, -100, 430, 400);
-	flour.image = '/ingredients/flourImg.PNG';
+	flour.image = '/assets/flourImg.PNG';
 	flour.scale = 0.15;
 	flour.rotationLock = 'true';
 
 	bakingSoda = new Sprite(-100, -100, 470, 570);
-	bakingSoda.image = '/ingredients/bakingSodaImg.PNG';
+	bakingSoda.image = '/assets/bakingSodaImg.PNG';
 	bakingSoda.scale = 0.15;
 	bakingSoda.image.offset.y = 20;
 	bakingSoda.image.offset.x = 20;
 	bakingSoda.rotationLock = 'true';
 
 	salt = new Sprite(-100, -100, 200, 300);
-	salt.image = '/ingredients/saltImg.PNG';
+	salt.image = '/assets/saltImg.PNG';
 	salt.scale = 0.15;
 	salt.rotationLock = 'true';
 
 	milk = new Sprite(-100, -100, 400, 650);
-	milk.image = '/ingredients/milkImg.PNG';
+	milk.image = '/assets/milkImg.PNG';
 	milk.scale = 0.15;
 	milk.rotationLock = 'true';
 
 	ingredientList = [egg, sugar, butter, vanilla, flour, bakingSoda, salt, milk];
 
-	oven = new Sprite(-100, -100, 200, 200, 'k');
-	oven.color = 'green';
+	oven = new Sprite(-200, -100, 400, 600, 'k');
+	oven.image = '/assets/ovenOpen.PNG';
+	oven.scale = 0.5;
 
-	cupcakeTray = new Sprite(-100, -100, 150, 100, 'k');
-	cupcakeTray.color = 'gray';
+	cupcakeTray = new Sprite(-100, -100, 790, 420, 'k');
+	cupcakeTray.image = '/assets/pan0.PNG';
+	cupcakeTray.scale = 0.35;
 
-	pipingBag = new Sprite(-100, -100, 50, 70);
-	pipingBag.color = 'yellow';
+	cupcakeTrayImageList = ['/assets/pan0.PNG', '/assets/pan1.PNG', '/assets/pan2.PNG', '/assets/pan3.PNG', '/assets/pan4.PNG', '/assets/pan5.PNG', '/assets/pan6.PNG', '/assets/pan7.PNG', '/assets/pan8.PNG', '/assets/pan9.PNG', '/assets/pan10.PNG', '/assets/pan11.PNG', '/assets/pan12.PNG']
+
+	pipingBag = new Sprite(-100, -100, 300, 650);
+	pipingBag.image = "/assets/pipingBagEmptyImg.PNG";
+	pipingBag.scale = 0.15;
 	pipingBag.rotationLock = 'true';
 	
-	instructions = ["Add In The Ingredients!", "Fill the Piping Bag"];
+	instructions = ["Add In The Ingredients!", "Fill The Cupcake Tray!", "Put The Tray In The Oven!"];
 
 	screen1Next = new Sprite(-100, -100, 100, 50, 's');
-	screen1Next.color = "pink";
-	screen1Next.text = "next";
+	screen1Next.color = "white";
+	screen1Next.text = "NEXT";
 
 	screen2Next = new Sprite(-100, -100, 100, 50, 's');
-	screen2Next.color = "pink";
-	screen2Next.text = "next";
+	screen2Next.color = "white";
+	screen2Next.text = "NEXT";
 
 	screen3Next = new Sprite(-100, -100, 100, 50, 's');
-	screen3Next.color = "pink";
-	screen3Next.text = "next";
+	screen3Next.color = "white";
+	screen3Next.text = "NEXT";
 
 }
 
 function draw() {
+	textFont(font);
+	textSize(30);
+	
 	if (screen == 0) {
 		clear();
 		background('skyblue');
+
+
 
 		if (homeScreenStart.mouse.presses()) {
 			screen += 1;
@@ -121,12 +147,14 @@ function draw() {
 			bakingSoda.pos = {x: 660, y: 250};
 			salt.pos = {x: 770, y: 200};
 			milk.pos = {x: 880, y: 250};
+
+			buttonSound.play();
 		}
 	}
 
 	if (screen == 1) {
 		clear();
-		background('white');
+		background(bg1);
 
 		textSize(20);
 		textAlign("center");
@@ -154,11 +182,14 @@ function draw() {
 			if (screen1Next.mouse.presses()) {
 				screen += 1;
 				bowl.pos = {x: -100, y: 400};
+				bowl.ani = '/assets/bowlFilled.PNG';
 				bowl.moveTo(200, 400);
 				pipingBag.pos = {x: 500, y: 250};
-				cupcakeTray.pos = {x: 750, y: 250};
+				cupcakeTray.pos = {x: 750, y: 220};
 				screen1Next.pos = {x: -100, y: -100};
 				instructionsCounter += 1;
+
+				buttonSound.play();
 			}
 		}
 
@@ -166,7 +197,7 @@ function draw() {
 
 	if (screen == 2) {
 		clear();
-		background("skyblue");
+		background(bg2);
 		text(instructions[instructionsCounter], 500, 70);
 
 		dragPipingBag(pipingBag);
@@ -179,11 +210,17 @@ function draw() {
 
 	if (screen == 3) {
 		clear();
-		background("pink");
+		background(bg3);
 		text(instructions[instructionsCounter], 500, 70);
 		text("Timer: " + round(ovenTimer), 500, 150);
 
+		cupcakeTray.scale = 0.2;
+
 		dragCupcakeTray(cupcakeTray);
+		xMax(cupcakeTray);
+		xMin(cupcakeTray);
+		yMax(cupcakeTray);
+		yMin(cupcakeTray);
 
 		if (timerStart == true) {
 			if (ovenTimer > 0) {
@@ -194,12 +231,30 @@ function draw() {
 			if (ovenTimer < 0) {
 				ovenTimer = 0;
 				ovenOpen = true;
-				cupcakeTray.color = 'purple';
+				oven.image = '/assets/ovenOpen.PNG';
+				cupcakeTray.image = '/assets/cupcakeTrayBaked.PNG';
 				cupcakeTray.pos = {x: 800, y: 400};
-				screen3Next.pos = {x: 500, y: 200};
+				screen3Next.pos = {x: 175, y: 350};
+				dingSound.play();
+
 			}
 		}
 
+		if (screen3Next.mouse.presses()) {
+			oven.remove();
+			cupcakeTray.remove();
+			screen += 1;
+			screen3Next.remove();
+			instructionsCounter += 1;
+
+			buttonSound.play();
+		}
+
+	}
+
+	if (screen == 4) {
+		clear();
+		background('skyblue');
 	}
 
 }
@@ -258,6 +313,7 @@ function ingredientDrag(ingredient) {
 		if (ingredient.overlaps(bowl)) {
 			ingredient.remove();
 			ingredientCounter -= 1;
+			sparklySound.play();
 		}
 	}
 }
@@ -268,17 +324,19 @@ function dragPipingBag(object) {
 		object.y = mouse.y;
 
 		if (object.overlaps(bowl)) {
-			object.color = 'pink';
+			object.image = '/assets/pipingBagFullImg.PNG';
 			bowl.color = 'red';
 			pipingBagFull = true;
+			popSound.play();
 		}
 
 		if (object.overlaps(cupcakeTray)) {
 			if (pipingBagFull === true) {
-				cupcakeTray.color = 'red';
-				object.color = 'red'
-				pipingBagFull = false;
 				cupcakeBatterCount += 1;
+				cupcakeTray.image = cupcakeTrayImageList[cupcakeBatterCount];
+				object.image = "/assets/pipingBagEmptyImg.PNG";
+				pipingBagFull = false;
+				popSound.play();
 			}
 			
 		}
@@ -307,6 +365,9 @@ function dragPipingBag(object) {
 		cupcakeTray.pos = {x: 200, y: 400};
 		cupcakeTray.collider = 'd';
 		cupcakeTray.rotationLock = 'true';
+
+		buttonSound.play();
+		instructionsCounter += 1;
 	}
 }
 
@@ -322,6 +383,7 @@ function dragCupcakeTray(object) {
 				ovenOpen = false;
 				timerStart = true;
 				cupcakeTray.pos = {x: -100, y: -100};
+				oven.image = '/assets/ovenClosed.PNG';
 			}
 		}
 	
