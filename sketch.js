@@ -19,22 +19,22 @@ let blackWrapper, whiteWrapper, pinkWrapper, greenWrapper, purpleWrapper, blueWr
 let candleDeco, flowersDeco, heartsDeco, sprinklesDeco, duckDeco, noDeco;
 
 function preload() {
-	sparklySound = loadSound('/sfx/sparkleSFX.mov');
-	bg1 = loadImage('/assets/screen1Background.png');
-	bg2 = loadImage('/assets/screen2Background.png');
-	bg3 = loadImage('/assets/screen3Background.png');
-	bg4 = loadImage('/assets/startBackground.PNG');
-	bg5 = loadImage('/assets/finishedBackground.PNG');
-	bg6 = loadImage('/assets/personalizationBackground.PNG');
+	sparklySound = loadSound('https://kwong09.github.io/cupcake-baker/sfx/sparkleSFX.mov');
+	bg1 = loadImage('https://kwong09.github.io/cupcake-baker/assets/screen1Background.png');
+	bg2 = loadImage('https://kwong09.github.io/cupcake-baker/assets/screen2Background.png');
+	bg3 = loadImage('https://kwong09.github.io/cupcake-baker/assets/screen3Background.png');
+	bg4 = loadImage('https://kwong09.github.io/cupcake-baker/assets/startBackground.PNG');
+	bg5 = loadImage('https://kwong09.github.io/cupcake-baker/assets/finishedBackground.PNG');
+	bg6 = loadImage('https://kwong09.github.io/cupcake-baker/assets/personalizationBackground.PNG');
 
-	font = loadFont('/assets/gentleRemindFont.ttf');
+	font = loadFont('https://kwong09.github.io/cupcake-baker/assets/gentleRemindFont.ttf');
 
-	popSound = loadSound('/sfx/popSFX.mov');
-	dingSound = loadSound('/sfx/ovenDing.mov');
-	buttonSound = loadSound('/sfx/buttonSFX.mp3');
-	ovenSound = loadSound('/sfx/ovenTick.mov');
-	yaySound = loadSound('/sfx/fanfareMusic.mp3');
-	bowlAni = loadAni("/animation/bowlFrame0.PNG", "/animation/bowlFrame1.PNG", "/animation/bowlFrame2.PNG", "/animation/bowlFrame5.PNG", "/animation/bowlFrame7.PNG", "/animation/bowlFrame4.PNG", "/animation/bowlFrame3.PNG", "/animation/bowlFrame6.PNG", "/animation/bowlFrame8.PNG");
+	popSound = loadSound('https://kwong09.github.io/cupcake-baker/sfx/popSFX.mov');
+	dingSound = loadSound('https://kwong09.github.io/cupcake-baker/sfx/ovenDing.mov');
+	buttonSound = loadSound('https://kwong09.github.io/cupcake-baker/sfx/buttonSFX.mp3');
+	ovenSound = loadSound('https://kwong09.github.io/cupcake-baker/sfx/ovenTick.mov');
+	yaySound = loadSound('https://kwong09.github.io/cupcake-baker/sfx/fanfareMusic.mp3');
+	bowlAni = loadAni("https://kwong09.github.io/cupcake-baker/animation/bowlFrame0.PNG", "https://kwong09.github.io/cupcake-baker/animation/bowlFrame1.PNG", "https://kwong09.github.io/cupcake-baker/animation/bowlFrame2.PNG", "https://kwong09.github.io/cupcake-baker/animation/bowlFrame5.PNG", "https://kwong09.github.io/cupcake-baker/animation/bowlFrame7.PNG", "https://kwong09.github.io/cupcake-baker/animation/bowlFrame4.PNG", "https://kwong09.github.io/cupcake-baker/animation/bowlFrame3.PNG", "https://kwong09.github.io/cupcake-baker/animation/bowlFrame6.PNG", "https://kwong09.github.io/cupcake-baker/animation/bowlFrame8.PNG");
 }
 
 function setup() {
@@ -55,64 +55,64 @@ function setup() {
 	bowl.ani.offset.y = -70;
 
 	egg = new Sprite(-100, -100);
-	egg.image = '/assets/egg0.png';
+	egg.image = 'https://kwong09.github.io/cupcake-baker/assets/egg0.png';
 	egg.scale = 0.07;
 	egg.diameter = 45;
 	egg.rotationLock = 'true';
 
 	sugar = new Sprite(-100, -100, 500, 600);
-	sugar.image = '/assets/sugarImg.PNG';
+	sugar.image = 'https://kwong09.github.io/cupcake-baker/assets/sugarImg.PNG';
 	sugar.scale = 0.15;
 	sugar.image.offset.y = -30;
 	sugar.image.offset.x = 30;
 	sugar.rotationLock = 'true';
 
 	butter = new Sprite(-100, -100, 400, 300);
-	butter.image = '/assets/butterImg.PNG';
+	butter.image = 'https://kwong09.github.io/cupcake-baker/assets/butterImg.PNG';
 	butter.scale = 0.15;
 	butter.rotationLock = 'true';
 
 	vanilla = new Sprite(-100, -100, 280, 420);
-	vanilla.image = '/assets/vanillaImg.PNG';
+	vanilla.image = 'https://kwong09.github.io/cupcake-baker/assets/vanillaImg.PNG';
 	vanilla.scale = 0.15;
 	vanilla.rotationLock = 'true';
 
 	flour = new Sprite(-100, -100, 430, 400);
-	flour.image = '/assets/flourImg.PNG';
+	flour.image = 'https://kwong09.github.io/cupcake-baker/assets/flourImg.PNG';
 	flour.scale = 0.15;
 	flour.rotationLock = 'true';
 
 	bakingSoda = new Sprite(-100, -100, 470, 570);
-	bakingSoda.image = '/assets/bakingSodaImg.PNG';
+	bakingSoda.image = 'https://kwong09.github.io/cupcake-baker/assets/bakingSodaImg.PNG';
 	bakingSoda.scale = 0.15;
 	bakingSoda.image.offset.y = 20;
 	bakingSoda.image.offset.x = 20;
 	bakingSoda.rotationLock = 'true';
 
 	salt = new Sprite(-100, -100, 200, 300);
-	salt.image = '/assets/saltImg.PNG';
+	salt.image = 'https://kwong09.github.io/cupcake-baker/assets/saltImg.PNG';
 	salt.scale = 0.15;
 	salt.rotationLock = 'true';
 
 	milk = new Sprite(-100, -100, 400, 650);
-	milk.image = '/assets/milkImg.PNG';
+	milk.image = 'https://kwong09.github.io/cupcake-baker/assets/milkImg.PNG';
 	milk.scale = 0.15;
 	milk.rotationLock = 'true';
 
 	ingredientList = [egg, sugar, butter, vanilla, flour, bakingSoda, salt, milk];
 
 	oven = new Sprite(-200, -100, 400, 600, 'k');
-	oven.image = '/assets/ovenOpen.PNG';
+	oven.image = 'https://kwong09.github.io/cupcake-baker/assets/ovenOpen.PNG';
 	oven.scale = 0.5;
 
 	cupcakeTray = new Sprite(-100, -100, 790, 420, 'k');
-	cupcakeTray.image = '/assets/pan0.PNG';
+	cupcakeTray.image = 'https://kwong09.github.io/cupcake-baker/assets/pan0.PNG';
 	cupcakeTray.scale = 0.35;
 
-	cupcakeTrayImageList = ['/assets/pan0.PNG', '/assets/pan1.PNG', '/assets/pan2.PNG', '/assets/pan3.PNG', '/assets/pan4.PNG', '/assets/pan5.PNG', '/assets/pan6.PNG', '/assets/pan7.PNG', '/assets/pan8.PNG', '/assets/pan9.PNG', '/assets/pan10.PNG', '/assets/pan11.PNG', '/assets/pan12.PNG']
+	cupcakeTrayImageList = ['https://kwong09.github.io/cupcake-baker/assets/pan0.PNG', 'https://kwong09.github.io/cupcake-baker/assets/pan1.PNG', 'https://kwong09.github.io/cupcake-baker/assets/pan2.PNG', 'https://kwong09.github.io/cupcake-baker/assets/pan3.PNG', 'https://kwong09.github.io/cupcake-baker/assets/pan4.PNG', 'https://kwong09.github.io/cupcake-baker/assets/pan5.PNG', 'https://kwong09.github.io/cupcake-baker/assets/pan6.PNG', 'https://kwong09.github.io/cupcake-baker/assets/pan7.PNG', 'https://kwong09.github.io/cupcake-baker/assets/pan8.PNG', 'https://kwong09.github.io/cupcake-baker/assets/pan9.PNG', 'https://kwong09.github.io/cupcake-baker/assets/pan10.PNG', 'https://kwong09.github.io/cupcake-baker/assets/pan11.PNG', 'https://kwong09.github.io/cupcake-baker/assets/pan12.PNG']
 
 	pipingBag = new Sprite(-100, -100, 300, 650);
-	pipingBag.image = "/assets/pipingBagEmptyImg.PNG";
+	pipingBag.image = "https://kwong09.github.io/cupcake-baker/assets/pipingBagEmptyImg.PNG";
 	pipingBag.scale = 0.15;
 	pipingBag.rotationLock = 'true';
 	
@@ -147,25 +147,25 @@ function setup() {
 	screen7Next.text = "NEXT";
 
 	cupcakeFlavor = new Sprite();
-	cupcakeFlavor.image = '/assets/vanillaFlavor.PNG';
+	cupcakeFlavor.image = 'https://kwong09.github.io/cupcake-baker/assets/vanillaFlavor.PNG';
 	cupcakeFlavor.image.scale = 0.4;
 	cupcakeFlavor.collider = 's';
 	cupcakeFlavor.pos = {x: -200, y: -200};
 
 	cupcakeFrosting = new Sprite();
-	cupcakeFrosting.image = '/assets/pinkFrosting.PNG';
+	cupcakeFrosting.image = 'https://kwong09.github.io/cupcake-baker/assets/pinkFrosting.PNG';
 	cupcakeFrosting.image.scale = 0.4;
 	cupcakeFrosting.collider = 's';
 	cupcakeFrosting.pos = {x: -200, y: -200};
 
 	cupcakeWrapper = new Sprite();
-	cupcakeWrapper.image = '/assets/blueWrapper.PNG';
+	cupcakeWrapper.image = 'https://kwong09.github.io/cupcake-baker/assets/blueWrapper.PNG';
 	cupcakeWrapper.image.scale = 0.4;
 	cupcakeWrapper.collider = 's';
 	cupcakeWrapper.pos = {x: -200, y: -200};
 
 	cupcakeDeco = new Sprite();
-	cupcakeDeco.image = '/assets/blank0.PNG';
+	cupcakeDeco.image = 'https://kwong09.github.io/cupcake-baker/assets/blank0.PNG';
 	cupcakeDeco.image.scale = 0.4;
 	cupcakeDeco.collider = 's';
 	cupcakeDeco.pos = {x: -200, y: -200};
@@ -236,7 +236,7 @@ function draw() {
 			if (screen1Next.mouse.presses()) {
 				screen += 1;
 				bowl.pos = {x: -100, y: 400};
-				bowl.ani = '/assets/bowlFilled.PNG';
+				bowl.ani = 'https://kwong09.github.io/cupcake-baker/assets/bowlFilled.PNG';
 				bowl.moveTo(200, 400);
 				pipingBag.pos = {x: 500, y: 250};
 				cupcakeTray.pos = {x: 750, y: 220};
@@ -285,8 +285,8 @@ function draw() {
 			if (ovenTimer < 0) {
 				ovenTimer = 0;
 				ovenOpen = true;
-				oven.image = '/assets/ovenOpen.PNG';
-				cupcakeTray.image = '/assets/cupcakeTrayBaked.PNG';
+				oven.image = 'https://kwong09.github.io/cupcake-baker/assets/ovenOpen.PNG';
+				cupcakeTray.image = 'https://kwong09.github.io/cupcake-baker/assets/cupcakeTrayBaked.PNG';
 				cupcakeTray.pos = {x: 800, y: 400};
 				screen3Next.pos = {x: 175, y: 350};
 				dingSound.play();
@@ -325,32 +325,32 @@ function draw() {
 
 		
 		if (vanillaFlavor.mouse.presses()) {
-			cupcakeFlavor.image = '/assets/vanillaFlavor.PNG';
+			cupcakeFlavor.image = 'https://kwong09.github.io/cupcake-baker/assets/vanillaFlavor.PNG';
 			cupcakeFlavor.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (chocolateFlavor.mouse.presses()) {
-			cupcakeFlavor.image = '/assets/chocolateFlavor.PNG';
+			cupcakeFlavor.image = 'https://kwong09.github.io/cupcake-baker/assets/chocolateFlavor.PNG';
 			cupcakeFlavor.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (confettiFlavor.mouse.presses()) {
-			cupcakeFlavor.image = '/assets/confettiFlavor.PNG';
+			cupcakeFlavor.image = 'https://kwong09.github.io/cupcake-baker/assets/confettiFlavor.PNG';
 			cupcakeFlavor.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (strawberryFlavor.mouse.presses()) {
-			cupcakeFlavor.image = '/assets/strawberryFlavor.PNG';
+			cupcakeFlavor.image = 'https://kwong09.github.io/cupcake-baker/assets/strawberryFlavor.PNG';
 			cupcakeFlavor.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (matchaFlavor.mouse.presses()) {
-			cupcakeFlavor.image = '/assets/matchaFlavor.PNG';
+			cupcakeFlavor.image = 'https://kwong09.github.io/cupcake-baker/assets/matchaFlavor.PNG';
 			cupcakeFlavor.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (redVelvetFlavor.mouse.presses()) {
-			cupcakeFlavor.image = '/assets/redVelvetFlavor.PNG';
+			cupcakeFlavor.image = 'https://kwong09.github.io/cupcake-baker/assets/redVelvetFlavor.PNG';
 			cupcakeFlavor.image.scale = 0.4;
 			buttonSound.play();
 		}
@@ -388,32 +388,32 @@ function draw() {
 
 		
 		if (whiteFrosting.mouse.presses()) {
-			cupcakeFrosting.image = '/assets/whiteFrosting.PNG';
+			cupcakeFrosting.image = 'https://kwong09.github.io/cupcake-baker/assets/whiteFrosting.PNG';
 			cupcakeFrosting.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (pinkFrosting.mouse.presses()) {
-			cupcakeFrosting.image = '/assets/pinkFrosting.PNG';
+			cupcakeFrosting.image = 'https://kwong09.github.io/cupcake-baker/assets/pinkFrosting.PNG';
 			cupcakeFrosting.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (orangeFrosting.mouse.presses()) {
-			cupcakeFrosting.image = '/assets/orangeFrosting.PNG';
+			cupcakeFrosting.image = 'https://kwong09.github.io/cupcake-baker/assets/orangeFrosting.PNG';
 			cupcakeFrosting.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (greenFrosting.mouse.presses()) {
-			cupcakeFrosting.image = '/assets/greenFrosting.PNG';
+			cupcakeFrosting.image = 'https://kwong09.github.io/cupcake-baker/assets/greenFrosting.PNG';
 			cupcakeFrosting.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (blueFrosting.mouse.presses()) {
-			cupcakeFrosting.image = '/assets/blueFrosting.PNG';
+			cupcakeFrosting.image = 'https://kwong09.github.io/cupcake-baker/assets/blueFrosting.PNG';
 			cupcakeFrosting.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (purpleFrosting.mouse.presses()) {
-			cupcakeFrosting.image = '/assets/purpleFrosting.PNG';
+			cupcakeFrosting.image = 'https://kwong09.github.io/cupcake-baker/assets/purpleFrosting.PNG';
 			cupcakeFrosting.image.scale = 0.4;
 			buttonSound.play();
 		}
@@ -452,32 +452,32 @@ function draw() {
 
 		
 		if (whiteWrapper.mouse.presses()) {
-			cupcakeWrapper.image = '/assets/whiteWrapper.PNG';
+			cupcakeWrapper.image = 'https://kwong09.github.io/cupcake-baker/assets/whiteWrapper.PNG';
 			cupcakeWrapper.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (blackWrapper.mouse.presses()) {
-			cupcakeWrapper.image = '/assets/blackWrapper.PNG';
+			cupcakeWrapper.image = 'https://kwong09.github.io/cupcake-baker/assets/blackWrapper.PNG';
 			cupcakeWrapper.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (pinkWrapper.mouse.presses()) {
-			cupcakeWrapper.image = '/assets/pinkWrapper.PNG';
+			cupcakeWrapper.image = 'https://kwong09.github.io/cupcake-baker/assets/pinkWrapper.PNG';
 			cupcakeWrapper.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (greenWrapper.mouse.presses()) {
-			cupcakeWrapper.image = '/assets/greenWrapper.PNG';
+			cupcakeWrapper.image = 'https://kwong09.github.io/cupcake-baker/assets/greenWrapper.PNG';
 			cupcakeWrapper.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (blueWrapper.mouse.presses()) {
-			cupcakeWrapper.image = '/assets/blueWrapper.PNG';
+			cupcakeWrapper.image = 'https://kwong09.github.io/cupcake-baker/assets/blueWrapper.PNG';
 			cupcakeWrapper.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (purpleWrapper.mouse.presses()) {
-			cupcakeWrapper.image = '/assets/purpleWrapper.PNG';
+			cupcakeWrapper.image = 'https://kwong09.github.io/cupcake-baker/assets/purpleWrapper.PNG';
 			cupcakeWrapper.image.scale = 0.4;
 			buttonSound.play();
 		}
@@ -516,32 +516,32 @@ function draw() {
 
 		
 		if (candleDeco.mouse.presses()) {
-			cupcakeDeco.image = '/assets/candleDeco.PNG';
+			cupcakeDeco.image = 'https://kwong09.github.io/cupcake-baker/assets/candleDeco.PNG';
 			cupcakeDeco.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (flowersDeco.mouse.presses()) {
-			cupcakeDeco.image = '/assets/flowersDeco.PNG';
+			cupcakeDeco.image = 'https://kwong09.github.io/cupcake-baker/assets/flowersDeco.PNG';
 			cupcakeDeco.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (heartsDeco.mouse.presses()) {
-			cupcakeDeco.image = '/assets/heartsDeco.PNG';
+			cupcakeDeco.image = 'https://kwong09.github.io/cupcake-baker/assets/heartsDeco.PNG';
 			cupcakeDeco.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (sprinklesDeco.mouse.presses()) {
-			cupcakeDeco.image = '/assets/sprinklesDeco.PNG';
+			cupcakeDeco.image = 'https://kwong09.github.io/cupcake-baker/assets/sprinklesDeco.PNG';
 			cupcakeDeco.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (duckDeco.mouse.presses()) {
-			cupcakeDeco.image = '/assets/duckDeco.PNG';
+			cupcakeDeco.image = 'https://kwong09.github.io/cupcake-baker/assets/duckDeco.PNG';
 			cupcakeDeco.image.scale = 0.4;
 			buttonSound.play();
 		}
 		if (noDeco.mouse.presses()) {
-			cupcakeDeco.image = '/assets/blank0.PNG';
+			cupcakeDeco.image = 'https://kwong09.github.io/cupcake-baker/assets/blank0.PNG';
 			cupcakeDeco.image.scale = 0.4;
 			buttonSound.play();
 		}
@@ -647,7 +647,7 @@ function dragPipingBag(object) {
 		object.y = mouse.y;
 
 		if (object.overlaps(bowl)) {
-			object.image = '/assets/pipingBagFullImg.PNG';
+			object.image = 'https://kwong09.github.io/cupcake-baker/assets/pipingBagFullImg.PNG';
 			bowl.color = 'red';
 			pipingBagFull = true;
 			popSound.play();
@@ -657,7 +657,7 @@ function dragPipingBag(object) {
 			if (pipingBagFull === true) {
 				cupcakeBatterCount += 1;
 				cupcakeTray.image = cupcakeTrayImageList[cupcakeBatterCount];
-				object.image = "/assets/pipingBagEmptyImg.PNG";
+				object.image = "https://kwong09.github.io/cupcake-baker/assets/pipingBagEmptyImg.PNG";
 				pipingBagFull = false;
 				popSound.play();
 			}
@@ -706,7 +706,7 @@ function dragCupcakeTray(object) {
 				ovenOpen = false;
 				timerStart = true;
 				cupcakeTray.pos = {x: -100, y: -100};
-				oven.image = '/assets/ovenClosed.PNG';
+				oven.image = 'https://kwong09.github.io/cupcake-baker/assets/ovenClosed.PNG';
 				ovenSound.play();
 
 			}
