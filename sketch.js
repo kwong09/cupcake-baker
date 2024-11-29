@@ -9,22 +9,31 @@ let instructions, instructionsCounter = 0;
 let cupcakeTray, cupcakeBatterCount = 0;
 let bowlAni;
 let ovenOpen = true, ovenTimer = 10, timerStart = false, oven;
-let sparklySound, popSound, dingSound, buttonSound;
+let sparklySound, popSound, dingSound, buttonSound, ovenSound, yaySound;
 let cupcakeTrayImageList, font;
-let bg1, bg2, bg3;
-let cupcakeBase, cupcakeFrosting, cupcakeWrapper;
+let bg1, bg2, bg3, bg4, bg5, bg6;
+let cupcakeFlavor, cupcakeFrosting, cupcakeWrapper, cupcakeDeco;
+let vanillaFlavor, chocolateFlavor, confettiFlavor, strawberryFlavor, matchaFlavor, redVelvetFlavor;
+let whiteFrosting, purpleFrosting, blueFrosting, greenFrosting, orangeFrosting, pinkFrosting;
+let blackWrapper, whiteWrapper, pinkWrapper, greenWrapper, purpleWrapper, blueWrapper;
+let candleDeco, flowersDeco, heartsDeco, sprinklesDeco, duckDeco, noDeco;
 
 function preload() {
 	sparklySound = loadSound('/sfx/sparkleSFX.mov');
 	bg1 = loadImage('/assets/screen1Background.png');
 	bg2 = loadImage('/assets/screen2Background.png');
 	bg3 = loadImage('/assets/screen3Background.png');
+	bg4 = loadImage('/assets/startBackground.PNG');
+	bg5 = loadImage('/assets/finishedBackground.PNG');
+	bg6 = loadImage('/assets/personalizationBackground.PNG');
 
 	font = loadFont('/assets/gentleRemindFont.ttf');
 
 	popSound = loadSound('/sfx/popSFX.mov');
 	dingSound = loadSound('/sfx/ovenDing.mov');
 	buttonSound = loadSound('/sfx/buttonSFX.mp3');
+	ovenSound = loadSound('/sfx/ovenTick.mov');
+	yaySound = loadSound('/sfx/fanfareMusic.mp3');
 	bowlAni = loadAni("/animation/bowlFrame0.PNG", "/animation/bowlFrame1.PNG", "/animation/bowlFrame2.PNG", "/animation/bowlFrame5.PNG", "/animation/bowlFrame7.PNG", "/animation/bowlFrame4.PNG", "/animation/bowlFrame3.PNG", "/animation/bowlFrame6.PNG", "/animation/bowlFrame8.PNG");
 }
 
@@ -35,7 +44,7 @@ function setup() {
 	textFont(font);
 	strokeWeight(0);
 
-	homeScreenStart = new Sprite(500, 250, 100, 50, 's');
+	homeScreenStart = new Sprite(500, 270, 100, 50, 's');
 	homeScreenStart.text = 'START';
 	homeScreenStart.color = 'white';
 
@@ -107,7 +116,7 @@ function setup() {
 	pipingBag.scale = 0.15;
 	pipingBag.rotationLock = 'true';
 	
-	instructions = ["Add In The Ingredients!", "Fill The Cupcake Tray!", "Put The Tray In The Oven!"];
+	instructions = ["Add In The Ingredients!", "Fill The Cupcake Tray!", "Put The Tray In The Oven!", "Pick A Flavor!", "Choose Your Frosting!", "Pick A Wrapper!", "Add A Decoration!"];
 
 	screen1Next = new Sprite(-100, -100, 100, 50, 's');
 	screen1Next.color = "white";
@@ -121,6 +130,51 @@ function setup() {
 	screen3Next.color = "white";
 	screen3Next.text = "NEXT";
 
+	screen4Next = new Sprite(-100, -100, 100, 50, 's');
+	screen4Next.color = "white";
+	screen4Next.text = "NEXT";
+
+	screen5Next = new Sprite(-100, -100, 100, 50, 's');
+	screen5Next.color = "white";
+	screen5Next.text = "NEXT";
+
+	screen6Next = new Sprite(-100, -100, 100, 50, 's');
+	screen6Next.color = "white";
+	screen6Next.text = "NEXT";
+
+	screen7Next = new Sprite(-100, -100, 100, 50, 's');
+	screen7Next.color = "white";
+	screen7Next.text = "NEXT";
+
+	cupcakeFlavor = new Sprite();
+	cupcakeFlavor.image = '/assets/vanillaFlavor.PNG';
+	cupcakeFlavor.image.scale = 0.4;
+	cupcakeFlavor.collider = 's';
+	cupcakeFlavor.pos = {x: -200, y: -200};
+
+	cupcakeFrosting = new Sprite();
+	cupcakeFrosting.image = '/assets/pinkFrosting.PNG';
+	cupcakeFrosting.image.scale = 0.4;
+	cupcakeFrosting.collider = 's';
+	cupcakeFrosting.pos = {x: -200, y: -200};
+
+	cupcakeWrapper = new Sprite();
+	cupcakeWrapper.image = '/assets/blueWrapper.PNG';
+	cupcakeWrapper.image.scale = 0.4;
+	cupcakeWrapper.collider = 's';
+	cupcakeWrapper.pos = {x: -200, y: -200};
+
+	cupcakeDeco = new Sprite();
+	cupcakeDeco.image = '/assets/blank0.PNG';
+	cupcakeDeco.image.scale = 0.4;
+	cupcakeDeco.collider = 's';
+	cupcakeDeco.pos = {x: -200, y: -200};
+
+	flavorButtons();
+	frostingButtons();
+	wrapperButtons();
+	decorationButtons();
+
 }
 
 function draw() {
@@ -129,7 +183,7 @@ function draw() {
 	
 	if (screen == 0) {
 		clear();
-		background('skyblue');
+		background(bg4);
 
 
 
@@ -247,6 +301,17 @@ function draw() {
 			screen3Next.remove();
 			instructionsCounter += 1;
 
+			cupcakeFlavor.pos = {x: 250, y: 250};
+
+			vanillaFlavor.pos = {x: 650, y: 190};
+			chocolateFlavor.pos = {x: 770, y: 190};
+			confettiFlavor.pos = {x: 650, y: 270};
+			strawberryFlavor.pos = {x: 770, y: 270};
+			matchaFlavor.pos = {x: 650, y: 350};
+			redVelvetFlavor.pos = {x: 770, y: 350};
+
+			screen4Next.pos = {x: 875, y: 425};
+
 			buttonSound.play();
 		}
 
@@ -254,7 +319,265 @@ function draw() {
 
 	if (screen == 4) {
 		clear();
-		background('skyblue');
+		background(bg6);
+
+		text(instructions[instructionsCounter], 500, 70);
+
+		
+		if (vanillaFlavor.mouse.presses()) {
+			cupcakeFlavor.image = '/assets/vanillaFlavor.PNG';
+			cupcakeFlavor.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (chocolateFlavor.mouse.presses()) {
+			cupcakeFlavor.image = '/assets/chocolateFlavor.PNG';
+			cupcakeFlavor.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (confettiFlavor.mouse.presses()) {
+			cupcakeFlavor.image = '/assets/confettiFlavor.PNG';
+			cupcakeFlavor.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (strawberryFlavor.mouse.presses()) {
+			cupcakeFlavor.image = '/assets/strawberryFlavor.PNG';
+			cupcakeFlavor.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (matchaFlavor.mouse.presses()) {
+			cupcakeFlavor.image = '/assets/matchaFlavor.PNG';
+			cupcakeFlavor.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (redVelvetFlavor.mouse.presses()) {
+			cupcakeFlavor.image = '/assets/redVelvetFlavor.PNG';
+			cupcakeFlavor.image.scale = 0.4;
+			buttonSound.play();
+		}
+
+		if (screen4Next.mouse.presses()) {
+			screen += 1;
+			vanillaFlavor.remove();
+			chocolateFlavor.remove();
+			confettiFlavor.remove();
+			strawberryFlavor.remove();
+			matchaFlavor.remove();
+			redVelvetFlavor.remove();
+
+			instructionsCounter += 1;
+
+			screen5Next.pos = {x: 875, y: 425};
+			cupcakeFrosting.pos = {x: 250, y: 250};
+
+			whiteFrosting.pos = {x: 650, y: 190};
+			pinkFrosting.pos = {x: 770, y: 190};
+			orangeFrosting.pos = {x: 650, y: 270};
+			greenFrosting.pos = {x: 770, y: 270};
+			blueFrosting.pos = {x: 650, y: 350};
+			purpleFrosting.pos = {x: 770, y: 350};
+
+			buttonSound.play();
+		}
+	}
+
+	if (screen == 5) {
+		clear();
+		background(bg6);
+
+		text(instructions[instructionsCounter], 500, 70);
+
+		
+		if (whiteFrosting.mouse.presses()) {
+			cupcakeFrosting.image = '/assets/whiteFrosting.PNG';
+			cupcakeFrosting.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (pinkFrosting.mouse.presses()) {
+			cupcakeFrosting.image = '/assets/pinkFrosting.PNG';
+			cupcakeFrosting.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (orangeFrosting.mouse.presses()) {
+			cupcakeFrosting.image = '/assets/orangeFrosting.PNG';
+			cupcakeFrosting.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (greenFrosting.mouse.presses()) {
+			cupcakeFrosting.image = '/assets/greenFrosting.PNG';
+			cupcakeFrosting.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (blueFrosting.mouse.presses()) {
+			cupcakeFrosting.image = '/assets/blueFrosting.PNG';
+			cupcakeFrosting.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (purpleFrosting.mouse.presses()) {
+			cupcakeFrosting.image = '/assets/purpleFrosting.PNG';
+			cupcakeFrosting.image.scale = 0.4;
+			buttonSound.play();
+		}
+
+		if (screen5Next.mouse.presses()) {
+			screen += 1;
+			whiteFrosting.remove();
+			pinkFrosting.remove();
+			orangeFrosting.remove();
+			greenFrosting.remove();
+			blueFrosting.remove();
+			purpleFrosting.remove();
+
+			instructionsCounter += 1;
+
+			screen6Next.pos = {x: 875, y: 425};
+			cupcakeWrapper.pos = {x: 250, y: 250};
+
+			whiteWrapper.pos = {x: 650, y: 190};
+			blackWrapper.pos = {x: 770, y: 190};
+			pinkWrapper.pos = {x: 650, y: 270};
+			greenWrapper.pos = {x: 770, y: 270};
+			blueWrapper.pos = {x: 650, y: 350};
+			purpleWrapper.pos = {x: 770, y: 350};
+
+			buttonSound.play();
+		}
+
+	}
+
+	if (screen == 6) {
+		clear();
+		background(bg6);
+
+		text(instructions[instructionsCounter], 500, 70);
+
+		
+		if (whiteWrapper.mouse.presses()) {
+			cupcakeWrapper.image = '/assets/whiteWrapper.PNG';
+			cupcakeWrapper.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (blackWrapper.mouse.presses()) {
+			cupcakeWrapper.image = '/assets/blackWrapper.PNG';
+			cupcakeWrapper.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (pinkWrapper.mouse.presses()) {
+			cupcakeWrapper.image = '/assets/pinkWrapper.PNG';
+			cupcakeWrapper.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (greenWrapper.mouse.presses()) {
+			cupcakeWrapper.image = '/assets/greenWrapper.PNG';
+			cupcakeWrapper.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (blueWrapper.mouse.presses()) {
+			cupcakeWrapper.image = '/assets/blueWrapper.PNG';
+			cupcakeWrapper.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (purpleWrapper.mouse.presses()) {
+			cupcakeWrapper.image = '/assets/purpleWrapper.PNG';
+			cupcakeWrapper.image.scale = 0.4;
+			buttonSound.play();
+		}
+
+		if (screen6Next.mouse.presses()) {
+			screen += 1;
+			whiteWrapper.remove();
+			blackWrapper.remove();
+			pinkWrapper.remove();
+			greenWrapper.remove();
+			blueWrapper.remove();
+			purpleWrapper.remove();
+
+			instructionsCounter += 1;
+
+			screen7Next.pos = {x: 875, y: 425};
+			cupcakeDeco.pos = {x: 250, y: 250};
+
+			candleDeco.pos = {x: 650, y: 190};
+			flowersDeco.pos = {x: 770, y: 190};
+			heartsDeco.pos = {x: 650, y: 270};
+			sprinklesDeco.pos = {x: 770, y: 270};
+			duckDeco.pos = {x: 650, y: 350};
+			noDeco.pos = {x: 770, y: 350};
+
+			buttonSound.play();
+		}
+
+	}
+
+	if (screen == 7) {
+		clear();
+		background(bg6);
+
+		text(instructions[instructionsCounter], 500, 70);
+
+		
+		if (candleDeco.mouse.presses()) {
+			cupcakeDeco.image = '/assets/candleDeco.PNG';
+			cupcakeDeco.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (flowersDeco.mouse.presses()) {
+			cupcakeDeco.image = '/assets/flowersDeco.PNG';
+			cupcakeDeco.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (heartsDeco.mouse.presses()) {
+			cupcakeDeco.image = '/assets/heartsDeco.PNG';
+			cupcakeDeco.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (sprinklesDeco.mouse.presses()) {
+			cupcakeDeco.image = '/assets/sprinklesDeco.PNG';
+			cupcakeDeco.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (duckDeco.mouse.presses()) {
+			cupcakeDeco.image = '/assets/duckDeco.PNG';
+			cupcakeDeco.image.scale = 0.4;
+			buttonSound.play();
+		}
+		if (noDeco.mouse.presses()) {
+			cupcakeDeco.image = '/assets/blank0.PNG';
+			cupcakeDeco.image.scale = 0.4;
+			buttonSound.play();
+		}
+
+		if (screen7Next.mouse.presses()) {
+			screen += 1;
+			candleDeco.remove();
+			flowersDeco.remove();
+			heartsDeco.remove();
+			sprinklesDeco.remove();
+			duckDeco.remove();
+			noDeco.remove();
+
+			instructionsCounter += 1;
+
+			buttonSound.play();
+
+			cupcakeFlavor.pos = {x: 500, y: 250};
+			cupcakeFrosting.pos = {x: 500, y: 250};
+			cupcakeWrapper.pos = {x: 500, y: 250};
+			cupcakeDeco.pos = {x: 500, y: 250};
+
+			screen7Next.remove();
+			screen6Next.remove();
+			screen5Next.remove();
+			screen4Next.remove();
+
+			yaySound.play();
+
+		}
+
+	}
+
+	if (screen == 8) {
+		clear();
+		background(bg5);
 	}
 
 }
@@ -384,11 +707,124 @@ function dragCupcakeTray(object) {
 				timerStart = true;
 				cupcakeTray.pos = {x: -100, y: -100};
 				oven.image = '/assets/ovenClosed.PNG';
+				ovenSound.play();
+
 			}
 		}
 	
 	}
 
 	
+
+}
+
+function flavorButtons() {
+
+	vanillaFlavor = new Sprite(-200, -200, 100, 50, 's');
+	vanillaFlavor.color = "white";
+	vanillaFlavor.text = "Vanilla";
+
+	chocolateFlavor = new Sprite(-200, -200, 100, 50, 's');
+	chocolateFlavor.color = "white";
+	chocolateFlavor.text = "Chocolate";
+
+	confettiFlavor = new Sprite(-200, -200, 100, 50, 's');
+	confettiFlavor.color = "white";
+	confettiFlavor.text = "Confetti";
+
+	strawberryFlavor = new Sprite(-200, -200, 100, 50, 's');
+	strawberryFlavor.color = "white";
+	strawberryFlavor.text = "Strawberry";
+
+	matchaFlavor = new Sprite(-200, -200, 100, 50, 's');
+	matchaFlavor.color = "white";
+	matchaFlavor.text = "Matcha";
+
+	redVelvetFlavor = new Sprite(-200, -200, 100, 50, 's');
+	redVelvetFlavor.color = "white";
+	redVelvetFlavor.text = "Red Velvet";
+}
+
+function frostingButtons() {
+
+	whiteFrosting = new Sprite(-200, -200, 100, 50, 's');
+	whiteFrosting.color = "white";
+	whiteFrosting.text = "White";
+
+	pinkFrosting = new Sprite(-200, -200, 100, 50, 's');
+	pinkFrosting.color = "white";
+	pinkFrosting.text = "Pink";
+
+	orangeFrosting = new Sprite(-200, -200, 100, 50, 's');
+	orangeFrosting.color = "white";
+	orangeFrosting.text = "Orange";
+
+	greenFrosting = new Sprite(-200, -200, 100, 50, 's');
+	greenFrosting.color = "white";
+	greenFrosting.text = "Green";
+
+	blueFrosting = new Sprite(-200, -200, 100, 50, 's');
+	blueFrosting.color = "white";
+	blueFrosting.text = "Blue";
+
+	purpleFrosting = new Sprite(-200, -200, 100, 50, 's');
+	purpleFrosting.color = "white";
+	purpleFrosting.text = "Purple";
+
+}
+
+function wrapperButtons() {
+
+	whiteWrapper = new Sprite(-200, -200, 100, 50, 's');
+	whiteWrapper.color = "white";
+	whiteWrapper.text = "White";
+
+	blackWrapper = new Sprite(-200, -200, 100, 50, 's');
+	blackWrapper.color = "white";
+	blackWrapper.text = "Black";
+
+	pinkWrapper = new Sprite(-200, -200, 100, 50, 's');
+	pinkWrapper.color = "white";
+	pinkWrapper.text = "Pink";
+
+	greenWrapper = new Sprite(-200, -200, 100, 50, 's');
+	greenWrapper.color = "white";
+	greenWrapper.text = "Green";
+
+	blueWrapper = new Sprite(-200, -200, 100, 50, 's');
+	blueWrapper.color = "white";
+	blueWrapper.text = "Blue";
+
+	purpleWrapper = new Sprite(-200, -200, 100, 50, 's');
+	purpleWrapper.color = "white";
+	purpleWrapper.text = "Purple";
+
+}
+
+function decorationButtons() {
+
+	candleDeco = new Sprite(-200, -200, 100, 50, 's');
+	candleDeco.color = "white";
+	candleDeco.text = "Candle";
+
+	flowersDeco = new Sprite(-200, -200, 100, 50, 's');
+	flowersDeco.color = "white";
+	flowersDeco.text = "Flowers";
+
+	heartsDeco = new Sprite(-200, -200, 100, 50, 's');
+	heartsDeco.color = "white";
+	heartsDeco.text = "Hearts";
+
+	sprinklesDeco = new Sprite(-200, -200, 100, 50, 's');
+	sprinklesDeco.color = "white";
+	sprinklesDeco.text = "Sprinkles";
+
+	duckDeco = new Sprite(-200, -200, 100, 50, 's');
+	duckDeco.color = "white";
+	duckDeco.text = "Ducks";
+
+	noDeco = new Sprite(-200, -200, 100, 50, 's');
+	noDeco.color = "white";
+	noDeco.text = "None";
 
 }
